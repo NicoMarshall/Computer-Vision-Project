@@ -2,12 +2,12 @@
 import random
 options = ["rock", "paper", "scissors"]
 
-def get_computer_choice() :
+def get_computer_choice() :   # Computer randomly chooses from three options 
     global computer_choice
     computer_choice = random.choice(options)
     return computer_choice
 
-def get_user_choice() :
+def get_user_choice() :  # Asks user for input until they enter a valid choice
     global user_choice 
     user_choice = input("Your options are rock, paper, or scissors. What is your choice?  ")
     if user_choice in options:
@@ -17,7 +17,7 @@ def get_user_choice() :
         get_user_choice() 
     return user_choice
 
-def get_winner(computer_choice, user_choice):
+def get_winner(computer_choice, user_choice):  # Works out who has won
     if computer_choice == user_choice :
         winner = "draw"
     elif computer_choice == "rock":
@@ -37,9 +37,11 @@ def get_winner(computer_choice, user_choice):
             winner = "computer"
     return winner
 
-get_computer_choice()
-get_user_choice()
-print("The winner was: ", get_winner(computer_choice, user_choice))
+def play():  # Plays the game by running the three previous functions and printing the winner
+    get_computer_choice()
+    get_user_choice()
+    print("The winner was: ", get_winner(computer_choice, user_choice))
       
-        
+play()        
+
    
