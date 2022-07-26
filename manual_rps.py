@@ -17,7 +17,29 @@ def get_user_choice() :
         get_user_choice() 
     return user_choice
 
+def get_winner(computer_choice, user_choice):
+    if computer_choice == user_choice :
+        winner = "draw"
+    elif computer_choice == "rock":
+        if user_choice == "paper":
+            winner = "user"
+        else:
+            winner = "computer"    
+    elif computer_choice == "paper":
+        if user_choice == "rock" :
+            winner = "computer"       
+        else:
+            winner = "user"
+    elif computer_choice == "scissors":
+        if user_choice == "rock":
+            winner = "user"
+        else:
+            winner = "computer"
+    return winner
 
-
+get_computer_choice()
 get_user_choice()
-
+print("The winner was: ", get_winner(computer_choice, user_choice))
+      
+        
+   
