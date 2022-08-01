@@ -15,9 +15,6 @@ def get_computer_choice() :   # Computer randomly chooses from three options
 
 def get_prediction(): # ML model predicts which object the user is showing to the camera
     global prediction
-    prediction = [0, 0, 0, 0]
-    prediction_index = prediction.index(max(prediction))
-    print(prediction_index)
     while True: 
         ret, frame = cap.read()
         resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
@@ -26,13 +23,15 @@ def get_prediction(): # ML model predicts which object the user is showing to th
         data[0] = normalized_image
         prediction = model.predict(data)
         cv2.imshow('frame', frame)
+        print(prediction)
         # Press q to close the window
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
+    
     cap.release()
     # Destroy all the windows
     cv2.destroyAllWindows()
-    
+    prediction_index = prediction.index(max(prediction))
     print(prediction_index)
     if prediction_index == 0:
         prediction = "rock"
