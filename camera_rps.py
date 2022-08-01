@@ -15,22 +15,18 @@ def get_computer_choice() :   # Computer randomly chooses from three options
 
 def get_prediction(): # ML model predicts which object the user is showing to the camera
     global prediction
-    while True: 
-        ret, frame = cap.read()
-        resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
-        image_np = np.array(resized_frame)
-        normalized_image = (image_np.astype(np.float32) / 127.0) - 1 # Normalize the image
-        data[0] = normalized_image
-        prediction = model.predict(data)
-        cv2.imshow('frame', frame)
-        print(prediction)
-        # Press q to close the window
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-    
+    ret, frame = cap.read()
+    resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
+    image_np = np.array(resized_frame)
+    normalized_image = (image_np.astype(np.float32) / 127.0) - 1 # Normalize the image
+    data[0] = normalized_image
+    prediction = model.predict(data)
+    cv2.imshow('frame', frame)
+    print(prediction)
     cap.release()
     # Destroy all the windows
     cv2.destroyAllWindows()
+    prediction = prediction[0].tolist()
     prediction_index = prediction.index(max(prediction))
     print(prediction_index)
     if prediction_index == 0:
