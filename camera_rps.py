@@ -26,6 +26,7 @@ def get_prediction(): # ML model predicts which object the user is showing to th
     cap.release()
     # Destroy all the windows
     cv2.destroyAllWindows()
+    # Find which object has the highest probability prediction 
     prediction = prediction[0].tolist()
     prediction_index = prediction.index(max(prediction))
     print(prediction_index)
