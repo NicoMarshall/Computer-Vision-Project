@@ -45,7 +45,7 @@ def get_prediction(): # ML model predicts which object the user is showing to th
         prediction = "scissors"   
     else:
         prediction = "nothing"     
-    print(prediction)    
+    print("You chose: ", prediction)    
     return prediction
     
  
