@@ -2,6 +2,7 @@
 import cv2
 from keras.models import load_model
 import numpy as np
+import time
 model = load_model('keras_model.h5')
 cap = cv2.VideoCapture(0)
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
@@ -15,6 +16,12 @@ def get_computer_choice() :   # Computer randomly chooses from three options
 
 def get_prediction(): # ML model predicts which object the user is showing to the camera
     global prediction
+    counter = 0
+    while counter < 6 :
+        time. sleep(1)
+        counter += 1
+        count_down = 6 - counter
+        print(count_down)
     ret, frame = cap.read()
     resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
     image_np = np.array(resized_frame)
