@@ -33,14 +33,12 @@ def get_prediction(): # ML model predicts which object the user is showing to th
     data[0] = normalized_image
     prediction = model.predict(data)
     cv2.imshow('frame', frame)
-    print(prediction)
     cap.release()
     # Destroy all the windows
     cv2.destroyAllWindows()
     # Find which object has the highest probability prediction 
     prediction = prediction[0].tolist()
     prediction_index = prediction.index(max(prediction))
-    print(prediction_index)
     if prediction_index == 0:
         prediction = "rock"
     elif prediction_index == 1 :
@@ -76,6 +74,7 @@ def get_winner(computer_choice, prediction):  # Works out who has won
     return winner
 
 def play():  
+    print("First to three victories. Get ready...")
     computer_wins = 0
     user_wins = 0
     while user_wins < 3 and computer_wins < 3:   
