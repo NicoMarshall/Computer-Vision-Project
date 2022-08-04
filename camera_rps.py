@@ -50,9 +50,6 @@ def get_prediction(): # ML model predicts which object the user is showing to th
     print("You chose: ", prediction)    
     return prediction
     
- 
-    
-
 def get_winner(computer_choice, prediction):  # Works out who has won
     if computer_choice == prediction :
         winner = "draw"
@@ -72,25 +69,23 @@ def get_winner(computer_choice, prediction):  # Works out who has won
         else:
             winner = "computer"
     return winner
-
-def play():  
-    print("First to three victories. Get ready...")
-    computer_wins = 0
-    user_wins = 0
-    while user_wins < 3 and computer_wins < 3:   
-        get_computer_choice()
-        get_prediction()
-        print("The winner was: ", get_winner(computer_choice, prediction))
-        winner = get_winner(computer_choice, prediction)
-        if winner == "user":
-            user_wins += 1
-        elif winner == "computer":
-            computer_wins += 1
-    if user_wins == 3 :
-        print("Congratulations, you have won!")
-    elif computer_wins == 3 :
-        print("Sorry, you lost")    
-                
-    
-      
-play()        
+               
+if __name__ == '__main__':
+    def play():  
+        print("First to three victories. Get ready...")
+        computer_wins = 0
+        user_wins = 0
+        while user_wins < 3 and computer_wins < 3:   
+            get_computer_choice()
+            get_prediction()
+            print("The winner was: ", get_winner(computer_choice, prediction))
+            winner = get_winner(computer_choice, prediction)
+            if winner == "user":
+                user_wins += 1
+            elif winner == "computer":
+                computer_wins += 1
+        if user_wins == 3 :
+            print("Congratulations, you have won!")
+        elif computer_wins == 3 :
+            print("Sorry, you lost")    
+    play()
