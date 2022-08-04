@@ -20,18 +20,18 @@ def get_computer_choice() :   # Computer randomly chooses from three options
 def get_prediction(): # ML model predicts which object the user is showing to the camera
     global prediction
     counter = 0
-    while counter < 6 :
+    while counter < 6 : #counts down five seconds
         time. sleep(1)
         counter += 1
         count_down = 6 - counter
         print(count_down)
-    cap = cv2.VideoCapture(0)    
+    cap = cv2.VideoCapture(0)    #takes photo
     ret, frame = cap.read()
     resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
     image_np = np.array(resized_frame)
     normalized_image = (image_np.astype(np.float32) / 127.0) - 1 # Normalize the image
     data[0] = normalized_image
-    prediction = model.predict(data)
+    prediction = model.predict(data)  #ML model gives output of 4 probabilities
     cv2.imshow('frame', frame)
     cap.release()
     # Destroy all the windows
@@ -75,7 +75,7 @@ if __name__ == '__main__':
         print("First to three victories. Get ready...")
         computer_wins = 0
         user_wins = 0
-        while user_wins < 3 and computer_wins < 3:   
+        while user_wins < 3 and computer_wins < 3:   #iterates game until one player has three wins
             get_computer_choice()
             get_prediction()
             print("The winner was: ", get_winner(computer_choice, prediction))
