@@ -11,6 +11,7 @@ data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 import random
 options = ["rock", "paper", "scissors"]
 
+
 def get_computer_choice() :   # Computer randomly chooses from three options 
     global computer_choice
     computer_choice = random.choice(options)
@@ -24,6 +25,7 @@ def get_prediction(): # ML model predicts which object the user is showing to th
         counter += 1
         count_down = 6 - counter
         print(count_down)
+    cap = cv2.VideoCapture(0)    
     ret, frame = cap.read()
     resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
     image_np = np.array(resized_frame)
@@ -74,8 +76,22 @@ def get_winner(computer_choice, prediction):  # Works out who has won
     return winner
 
 def play():  
-    get_computer_choice()
-    get_prediction()
-    print("The winner was: ", get_winner(computer_choice, prediction))
+    computer_wins = 0
+    user_wins = 0
+    while user_wins < 3 and computer_wins < 3:   
+        get_computer_choice()
+        get_prediction()
+        print("The winner was: ", get_winner(computer_choice, prediction))
+        winner = get_winner(computer_choice, prediction)
+        if winner == "user":
+            user_wins += 1
+        elif winner == "computer":
+            computer_wins += 1
+    if user_wins == 3 :
+        print("Congratulations, you have won!")
+    elif computer_wins == 3 :
+        print("Sorry, you lost")    
+                
+    
       
 play()        
