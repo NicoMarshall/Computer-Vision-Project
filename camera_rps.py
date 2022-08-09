@@ -1,4 +1,5 @@
 # Plays the game "Rock, Paper, Scissors" with the camera
+print("Welcome to RPS")
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import cv2
@@ -53,6 +54,8 @@ def get_prediction(): # ML model predicts which object the user is showing to th
 def get_winner(computer_choice, prediction):  # Works out who has won
     if computer_choice == prediction :
         winner = "draw"
+    elif prediction == "nothing" :
+        winner = "computer"    
     elif computer_choice == "rock":
         if prediction == "paper":
             winner = "user"
